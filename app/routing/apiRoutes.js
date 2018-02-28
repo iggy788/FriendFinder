@@ -10,32 +10,35 @@ module.exports = function (app) {
     app.post('/api/friends', function (req, res) {
         // Our user is the data sent in the request.
         var thisUser = req.body;
+        console.log('thisUser ******************************');
         console.log(thisUser);
-        console.log(friendData);
+        // console.log(friendData);
         var differences = [];
 
-        // If there is more than one friend to compare to,
-        if (friendData.length > 3) {
-            // Step through these potential friends.
-            friendData.forEach(function (user) {
+        if (friendData.length > 1) {
+
+            friendData.forEach(function (thisUser) {
                 var totalDifference = 0;
-                console.log('Mikes Scores: ' + friendData[0].scores);
-                console.log('Arnolds Scores: ' + friendData[1].scores);
-                console.log('Jordans Scores: ' + friendData[2].scores);
-                // console.log(friendData[i]);
-                // For each answer, compare the answers and add the absolute value of the difference to the total difference.
+                console.log('friendData ******************************');
+                console.log(friendData);
+
                 for (var i = 0; i < thisUser.scores.length; i++) {
-                    var otherScore = user.scores[i];
-                    // console.log('otherScore: ' + otherScore);
-                    var thisScore = thisUser.scores[i];
-                    // console.log('thisScore: ' + thisScore);
-                    var difference = +otherScore - +thisScore;
-                    // console.log('difference: '+ difference);
+                    var otherScore = friendData[i].scores;
+                    console.log('otherScore ******************************')
+                    console.log(otherScore);
+                    var thisScore = thisUser.scores;
+                    console.log('thisScore ******************************');
+                    console.log(thisScore);
+                    // THIS NEEDS TO BE FIXED
+                    var difference = parseInt(otherScore) - parseInt(thisScore);
+                    console.log('difference ******************************');
+                    console.log(difference);
                     totalDifference += Math.abs(difference);
                 }
 
                 differences.push(totalDifference);
             });
+
 
             // Find the minimum difference score.
             var minimumDifference = Math.min.apply(null, differences);
@@ -43,6 +46,8 @@ module.exports = function (app) {
 
             // Since there may be more than one potential friend with that score, create an array.
             var bestMatches = [];
+            console.log('bestMatches ******************************');
+            console.log(bestMatches);
 
             // For each item in differences, if it is equal to the minimumDifference, add the corresponding friendData to the bestMatches array.
             for (var i = 0; i < differences.length; i++) {
