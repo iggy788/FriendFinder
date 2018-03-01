@@ -8,36 +8,64 @@ module.exports = function (app) {
 
     // POST route for /api/friends takes in the new data and responds with the most compatible match.
     app.post('/api/friends', function (req, res) {
+        res.json(friendData);
         // Our user is the data sent in the request.
         var thisUser = req.body;
         console.log('thisUser ******************************');
         console.log(thisUser);
-        // console.log(friendData);
+        console.log('friendData ******************************');
+        console.log(friendData);
+
         var differences = [];
 
         if (friendData.length > 1) {
 
             friendData.forEach(function (thisUser) {
+
                 var totalDifference = 0;
-                console.log('friendData ******************************');
-                console.log(friendData);
 
                 for (var i = 0; i < thisUser.scores.length; i++) {
-                    var otherScore = friendData[i].scores;
-                    console.log('otherScore ******************************')
-                    console.log(otherScore);
-                    var thisScore = thisUser.scores;
-                    console.log('thisScore ******************************');
-                    console.log(thisScore);
-                    // THIS NEEDS TO BE FIXED
-                    var difference = parseInt(otherScore) - parseInt(thisScore);
-                    console.log('difference ******************************');
-                    console.log(difference);
+                    var otherAnswer = friendData.scores[i];
+                    console.log('otherAnswer ******************************');
+                    console.log(otherAnswer);
+                    var thisAnswer = thisUser.scores[i];
+                    console.log('thisAnswer ******************************');
+                    console.log(thisAnswer);
+                    var difference = +otherAnswer - +thisAnswer;
                     totalDifference += Math.abs(difference);
                 }
 
-                differences.push(totalDifference);
             });
+            // for (var si = 0; i < thisUser.scores.length; i++)
+            // For each answer, compare the answers and add the absolute value of the difference to the total difference.
+
+
+            //     console.log('friendData ******************************');
+            //     console.log(friendData);
+
+            //     var otherScore = friendData[i].scores;
+            //     console.log('otherScore ******************************')
+            //     console.log(otherScore);
+
+            //     var thisScore = thisUser.scores;
+            //     console.log('thisScore ******************************');
+            //     console.log(thisScore);
+
+            //     // THIS NEEDS TO BE FIXED
+            //     var difference = parseInt(otherScore) - parseInt(thisScore);
+            //     console.log('difference ******************************');
+            //     console.log(difference);
+
+            //     console.log('totalDifference ******************************');
+            //     console.log(totalDifference);
+            //     totalDifference += Math.abs(difference);
+            //     console.log('Math ******************************');
+            //     console.log((totalDifference += Math.abs(difference)));
+            //     differences.push(totalDifference);
+            //     console.log('differences ******************************');
+            //     console.log(differences);
+            // }
+
 
 
             // Find the minimum difference score.
