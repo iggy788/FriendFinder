@@ -5,3 +5,32 @@
 .form-group {
     width: 300px;
 }
+
+.modal-header, #match-name {
+    text-align: center;
+}
+
+.modal-content {
+    /* Visual */
+    background: url('/images/Heart.png');
+    margin: 0;
+    padding: 0;
+}
+
+.modal-title {
+    margin: 0;
+    line-height: 1.42857143;
+    color: white;
+    font-size: 50px;
+}
+
+#match-name {
+    color: white;
+}
+
+img {
+    vertical-align: middle;
+    display: 'inline-block';
+    width: 550px;
+    margin: 10px;
+}
