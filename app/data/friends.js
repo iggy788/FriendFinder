@@ -15,5 +15,5 @@ module.exports = [
     name: 'Michael Jordan',
     photo: 'https://media.giphy.com/media/60Ds0zREQt4MU/giphy.gif`',
     scores: ['5', '5', '5', '5', '5', '5', '5', '5', '5', '5'],
-  },
+  }
 ];
