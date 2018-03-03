@@ -57,9 +57,6 @@ $('#submit').on('click', function(event) {
                 $('#q10').val(),
             ],
         };
-        console.log(userData);
-
-        // AJAX post the data to the friends API.
         $.post('/api/friends', userData, function(data) {
             console.log('response = ' + JSON.stringify(data));
             console.log('name = ' + JSON.stringify(data[0].name));
@@ -71,20 +68,16 @@ $('#submit').on('click', function(event) {
             // Show the modal with the best match
             $('#results-modal').modal('toggle');
 
-            // Clear the form when submitting
-            $('.form-control').val('');
-            $('.chosen-single').val();
-            $('.chosen-select').append('<option value=""></option>');
-            $(".chosen-select").val($(".chosen-select").data("default-value"));
-            $('.chosen-single').val(null).trigger('change');
-            $('.chosen-select').each(function() {
-                $(this).val($(".chosen-select-deselect").data("default-value"))
-            });
-            for (var selector in config) {
-                $(selector).chosen(config[selector]);
-            }
         });
     } else {
         alert('Please fill out all fields before submitting!');
     }
+    // Clear the form when submitting
+    $('.form-control').val('');
+    jQuery.fn.chosen_reset = function(n) {
+        $(this).chosen('destroy');
+        $(this).prop('selectedIndex', 0);
+        $(this).chosen(n)
+    }
+    $('select').chosen_reset({ width: '155px' });
 });

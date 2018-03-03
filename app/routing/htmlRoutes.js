@@ -6,7 +6,7 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname + '/../public/survey.html'));
   });
 
-  // USE route returns home.html for any undefined GET routes.
+  //GET route for / returns home.html.
   app.use(function(req, res) {
     res.sendFile(path.join(__dirname + '/../public/home.html'));
   });

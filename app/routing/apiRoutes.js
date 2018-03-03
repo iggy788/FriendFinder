@@ -22,6 +22,7 @@ module.exports = function(app) {
                     var thisAnswer = thisUser.scores;
                     var difference = parseInt(otherAnswer) - parseInt(thisAnswer);
                     var totalDifference = Math.abs(difference);
+                    console.log(totalDifference);
                     break;
                 }
                 differences.push(totalDifference);
